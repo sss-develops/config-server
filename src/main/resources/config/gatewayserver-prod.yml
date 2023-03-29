@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: gatewayserver
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging.pattern.level: "%5p [${spring.application.name:},%X{traceId:-},%X{spanId:-}]"
+
+server:
+  port: 8072
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      default-zone: http://eurekaserver-service:8070/eureka
